@@ -1,0 +1,171 @@
+/* ==========================
+   Couleurs et variables 
+   ========================== */
+   :root {
+    --color-primary: #4F46E5;  /* Indigo-600 approx (ex: #6366F1) */
+    --color-secondary: #4338CA; 
+    --color-bg: #f7f9fc;
+    --color-text: #3B3B3B;
+    --color-error: #E53E3E;   /* Red-600 approx */
+  }
+  
+  /* ==========================
+     Styling global
+     ========================== */
+  body {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* ==========================
+     Le conteneur principal
+     ========================== */
+  .x-guest-layout {
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+  }
+  
+  /* ==========================
+     Champs de formulaire
+     ========================== */
+  .block {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .w-full {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .mt-1 {
+    margin-top: 0.25rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  /* Inputs (text, email, password) */
+  .x-text-input {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.75rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .x-text-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+  }
+  
+  /* ==========================
+     Labels & erreurs
+     ========================== */
+  .x-input-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.25rem;
+    display: inline-block;
+  }
+  
+  .x-input-error {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* ==========================
+     Bouton principal
+     ========================== */
+  .x-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    background-color: var(--color-primary);
+    color: #fff !important; /* Pour être sûr que le texte soit blanc */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-weight: 600;
+  }
+  
+  .x-primary-button:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-1px);
+  }
+  
+  .x-primary-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+  }
+  
+  /* ==========================
+     Checkbox "Remember Me"
+     ========================== */
+  #remember_me {
+    accent-color: var(--color-primary);
+  }
+  
+  /* ==========================
+     Lien "Forgot your password?"
+     ========================== */
+  a.underline {
+    text-decoration: none;
+    color: #4F46E5; /* Indigo */
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    margin-left: 8px;
+  }
+  
+  a.underline:hover {
+    text-decoration: underline;
+    color: var(--color-secondary);
+  }
+  
+  a.underline:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  /* ==========================
+     Margins & spacing
+     ========================== */
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-end {
+    justify-content: flex-end;
+  }
+  
+  .ms-3 {
+    margin-inline-start: 0.75rem; /* Pour la gauche en LTR */
+  }
+  
+  .block.mt-4 label.inline-flex.items-center {
+    gap: 0.4rem;
+  }
+  
+  /* Ajustement de la marge start pour l’icône ou le label */
+  .ms-2 {
+    margin-inline-start: 0.5rem;
+  }
+  
