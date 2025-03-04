@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title>Dashboard - Gestion de Projets</title>
     
     <!-- Bootstrap 4 CSS -->
@@ -15,6 +16,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Votre style personnalisé (inclus ci-dessous) -->
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -223,8 +226,9 @@
                             <a class="nav-link" href="#">
                                 <i class="fas fa-tasks"></i> Projets
                             </a>
+                            <!-- Exemple de sous-menu -->
                             <a class="dropdown-item" href="{{ route('projects.index') }}">Liste des projets</a>
-                             <a class="dropdown-item" href="{{ route('projects.create') }}">Nouveau projet</a>
+                            <a class="dropdown-item" href="{{ route('projects.create') }}">Nouveau projet</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -236,8 +240,6 @@
                                 <i class="fas fa-users"></i> Équipe
                             </a>
                         </li>
-                      
-                       
                     </ul>
                     
                     <p class="text-white-50 ml-3 mb-1 mt-4">PARAMÈTRES</p>
@@ -274,51 +276,19 @@
                     <div class="col-md-6">
                         <div class="d-flex justify-content-end">
                             <div class="dropdown mr-3">
-                                
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
-                                    <div class="dropdown-header">Notifications</div>
-                                    <a class="dropdown-item" href="#">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-3 text-primary">
-                                                <i class="fas fa-user-plus"></i>
-                                            </div>
-                                            <div>
-                                                <div class="small text-muted">Il y a 3 heures</div>
-                                                <div>Nouveau membre a rejoint l'équipe</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-3 text-warning">
-                                                <i class="fas fa-exclamation-triangle"></i>
-                                            </div>
-                                            <div>
-                                                <div class="small text-muted">Il y a 5 heures</div>
-                                                <div>Tâche en retard: "Maquette design"</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-3 text-success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div>
-                                                <div class="small text-muted">Il y a 1 jour</div>
-                                                <div>Projet "E-commerce" complété</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                <!-- Exemple de zone de notifications si besoin -->
                             </div>
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-decoration-none text-secondary" id="userDropdown" data-toggle="dropdown">
-                                   
-                                    <div>
-                                        <div class="font-weight-bold">{{ Auth::user()->name }}</div>
-                                        <div class="small">{{ Auth::user()->role->name }}</div>
-                                    </div>
+                                    @auth
+                                        <div>
+                                            <div class="font-weight-bold">{{ Auth::user()->name }}</div>
+                                            {{-- Si vous avez un rôle unique : --}}
+                                            @if(Auth::user()->role)
+                                                <div class="small">{{ Auth::user()->role->name }}</div>
+                                            @endif
+                                        </div>
+                                    @endauth
                                     <i class="fas fa-chevron-down ml-2"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -332,160 +302,18 @@
                     </div>
                 </div>
                 
-                <!-- Dashboard Content -->
+                <!-- Ici, on injecte le contenu dynamique -->
                 <div class="main-content">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="h3 mb-0">Dashboard</h1>
-                            
-                            <a class="btn btn-primary" href="{{ route('projects.create') }}">Nouveau projet</a>
-                     
-                      </div>
-                    
-                    <!-- Stats Cards Row -->
-                    <div class="row">
-                       
-                        
-                        
-                    
-                    </div>
-                    
-                    <!-- Projects and Activities Row -->
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card">
-                                
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-projects">
-                                            <thead>
-                                                <tr>
-                                                    <th>Projet</th>
-                                                    <th>Chef de projet</th>
-                                                    <th>Statut</th>
-                                                    <th>Progrès</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="font-weight-bold">Site Web E-commerce</div>
-                                                        <div class="small text-muted">Client: FashionTech</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar mr-2 bg-primary text-white">TM</div>
-                                                            <div>Thomas M.</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span class="status-badge bg-success text-white">Terminé</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="progress flex-grow-1 mr-2">
-                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                            <div>100%</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-secondary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="font-weight-bold">Application Mobile</div>
-                                                        <div class="small text-muted">Client: HealthApp</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar mr-2 bg-info text-white">SL</div>
-                                                            <div>Sophie L.</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span class="status-badge bg-primary text-white">En cours</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="progress flex-grow-1 mr-2">
-                                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                            <div>65%</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-secondary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="font-weight-bold">Refonte CRM</div>
-                                                        <div class="small text-muted">Client: TechServices</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar mr-2 bg-warning text-white">JD</div>
-                                                            <div>Jean D.</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span class="status-badge bg-warning text-white">En attente</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="progress flex-grow-1 mr-2">
-                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                            <div>30%</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-secondary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="font-weight-bold">Campagne Marketing</div>
-                                                        <div class="small text-muted">Client: EventPro</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar mr-2 bg-danger text-white">AM</div>
-                                                            <div>Anne M.</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span class="status-badge bg-danger text-white">En retard</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="progress flex-grow-1 mr-2">
-                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                            <div>45%</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-secondary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            
-                            
-                               
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JS (jQuery, Popper, Bootstrap) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

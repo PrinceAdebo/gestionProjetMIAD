@@ -27,6 +27,12 @@ Route::middleware('auth')->group(function () {
 
 //pour les projets
 Route::resource('projects', ProjectController::class);
+// Formulaire de création
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+
+// Traitement du formulaire
+Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+
 
 
 //pour les taches
